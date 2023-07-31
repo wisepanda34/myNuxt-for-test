@@ -1,7 +1,14 @@
 <template>
   <div>
     <header class="header flex justify-between items-center p-6">
-      <div class="logo text-green-600 font-medium text-3xl px-5 py-1.5">LOGO</div>
+      <div class="flex">
+        <div class="flex justify-between items-center">
+          <svg class="text-green-700 mx-auto " width="40" height="40" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+            <path fill="currentColor" d="m10 17l-4-4l1.41-1.41L10 14.17l6.59-6.59L18 9m-6-8L3 5v6c0 5.55 3.84 10.74 9 12c5.16-1.26 9-6.45 9-12V5l-9-4Z"/>
+          </svg>
+        </div>
+        <div class="logo flex items-center text-gray-900 font-bold text-2xl px-5 py-1.5">Security</div>
+      </div>
       <a href="#" class="flex  rounded-md bg-green-600 py-2 px-4 text-white hover:bg-green-700 font-semibold
       shadow-lg hover:shadow-xl focus:shadow-xl focus:outline-none focus:ring-2 focus:ring-green-500
       focus:ring-offset-2 transition duration-200 ease-in-out "
@@ -12,8 +19,11 @@
 
     <div class="flex flex-col justify-center pb-20">
       <div class="mx-auto max-w-lg">
-        <svg class="text-green-600 mx-auto w-16 h-16" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 36 36"><path fill="currentColor" d="M7 6h16v9.8h2V6a2 2 0 0 0-2-2H7a2 2 0 0 0-2 2v24a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2H7Z" class="clr-i-outline clr-i-outline-path-1"/>
-          <path fill="currentColor" d="M28.16 17.28a1 1 0 0 0-1.41 1.41L30.13 22h-14.5a1 1 0 0 0-1 1a1 1 0 0 0 1 1h14.5l-3.38 3.46a1 1 0 1 0 1.41 1.41l5.84-5.8Z" class="clr-i-outline clr-i-outline-path-2"/><path fill="none" d="M0 0h36v36H0z"/>
+        <svg class="text-green-600 mx-auto w-16 h-16" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+          <path fill="currentColor" d="M17 7h1v1a1 1 0 0 0 2 0V7h1a1 1 0 0 0 0-2h-1V4a1 1 0 0 0-2 0v1h-1a1 1 0 0 0 0
+          2Zm4 4a1 1 0 0 0-1 1v6a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V8.41l5.88 5.89a3 3 0 0 0 4.24 0l2.47-2.47a1 1 0 0
+          0-1.42-1.42l-2.47 2.47a1 1 0 0 1-1.4 0L5.41 7H13a1 1 0 0 0 0-2H5a3 3 0 0 0-3 3v10a3 3 0 0 0 3 3h14a3 3 0 0 0
+          3-3v-6a1 1 0 0 0-1-1Z"/>
         </svg>
         <h2 class="text-2xl sm:text-3xl font-bold text-gray-800">Wellcome back!</h2>
       </div>
@@ -21,6 +31,14 @@
 
         <form action="#" autocomplete="off" class="space-y-6">
 
+          <!--          warning-->
+          <div class="flex gap-4 items-center justify-between border border-red-200 rounded p-3 bg-red-50">
+            <svg class="text-red-500 mx-auto w-6 h-6" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+              <path fill="currentColor" d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10s10-4.48 10-10S17.52 2 12 2zm0 11c-.55 0-1-.45-1-1V8c0-.55.45-1 1-1s1 .45 1 1v4c0 .55-.45 1-1 1zm1 4h-2v-2h2v2z"/>
+            </svg>
+
+            <p class="text-red-800">These credentials dont match our records.</p>
+          </div>
 
           <!--            input Email-->
 
