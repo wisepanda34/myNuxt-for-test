@@ -1,6 +1,6 @@
 <template>
   <Html>
-    <Body class="min-h-screen bg-gray-200 ">
+    <Body class="min-h-screen bg-gray-100 ">
       <div class="container flex flex-col justify-between">
         <NuxtPage class="z-10"/>
         <div class="w-full fixed bottom-0">

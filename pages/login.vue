@@ -53,7 +53,7 @@
           <div class="flex flex-col gap-3 justify-center items-center mt-5">
             <div class="flex gap-2 items-center justify-start">
 
-              <input class="w-4 h-4 rounded border-gray-300 text-green-600 focus:ring-green-500" type="checkbox" name="remember" id="remember"/>
+              <input class="w-4 h-4 rounded border-gray-300 text-green-600 focus:ring-0" type="checkbox" name="remember" id="remember"/>
               <label class="text-gray-900 text-sm" for="remember">Remember me</label>
             </div>
 
