@@ -1,16 +1,18 @@
 <template>
   <div>
     <Header/>
-    <Login/>
+    <Form/>
   </div>
 
 </template>
 
 <script>
-import Login from "~/components/Login.vue";
+import Login from "~/components/Form.vue";
+import Form from "~/components/Form.vue";
 
 export default {
   name: "index",
+  components: {Form},
 }
 </script>
 
