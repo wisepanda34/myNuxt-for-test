@@ -10,11 +10,17 @@
   },
   "devDependencies": {
     "@nuxt/devtools": "latest",
-    "@types/node": "^18.17.0",
-    "nuxt": "^3.6.5",
-    "@nuxt/image": "^1.0.0-rc.1",
     "@nuxtjs/color-mode": "^3.3.0",
     "@nuxtjs/tailwindcss": "^6.8.0",
-    "@sidebase/nuxt-auth": "^0.6.0-beta.3"
+    "@sidebase/nuxt-auth": "^0.6.0-beta.3",
+    "@types/node": "^18.17.0",
+    "eslint": "^8.46.0",
+    "nuxt": "^3.6.5",
+    "nuxt-icon": "^0.4.2"
+  },
+  "dependencies": {
+    "@pinia/nuxt": "^0.4.11",
+    "@tailwindcss/forms": "^0.5.4",
+    "pinia": "^2.1.6"
   }
 }
