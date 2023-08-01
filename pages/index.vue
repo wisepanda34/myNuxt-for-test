@@ -1,23 +1,8 @@
 <template>
   <div>
-    <header class="header flex justify-between items-center p-6">
-      <div class="flex">
-        <div class="flex justify-between items-center">
-          <svg class="text-green-700 mx-auto " width="40" height="40" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-            <path fill="currentColor" d="m10 17l-4-4l1.41-1.41L10 14.17l6.59-6.59L18 9m-6-8L3 5v6c0 5.55 3.84 10.74 9 12c5.16-1.26 9-6.45 9-12V5l-9-4Z"/>
-          </svg>
-        </div>
-        <div class="logo flex items-center text-gray-900 font-bold text-2xl px-5 py-1.5">Security</div>
-      </div>
-      <a href="#" class="flex  rounded-md bg-green-600 py-2 px-4 text-white hover:bg-green-700 font-semibold
-      shadow-lg hover:shadow-xl focus:shadow-xl focus:outline-none focus:ring-2 focus:ring-green-500
-      focus:ring-offset-2 transition duration-200 ease-in-out "
-      >
-        Sign in
-      </a>
-    </header>
+   <Header :signIn="signIn"/>
 
-    <div class="flex flex-col justify-center pb-20">
+    <main class="flex flex-col justify-center pb-20">
         <div class="mx-auto max-w-lg">
           <svg class="text-green-600 mx-auto" xmlns="http://www.w3.org/2000/svg" width="60" height="60" viewBox="0 0 24 24">
             <path fill="currentColor" d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-7 3c1.93 0 3.5 1.57 3.5 3.5S13.93 13 12 13s-3.5-1.57-3.5-3.5S10.07 6 12 6zm7 13H5v-.23c0-.62.28-1.2.76-1.58C7.47 15.82 9.64 15 12 15s4.53.82 6.24 2.19c.48.38.76.97.76 1.58V19z"/>
@@ -44,21 +29,15 @@
             <!--            input Email-->
 
             <div>
-              <label class="block text-sm font-medium text-red-400 pl-1" for="email">Email</label>
+              <label class="block text-sm font-medium text-gray-700 pl-1" for="email">Email</label>
               <div class="relative rounded-md shadow-md mt-2">
                 <div class="absolute left-0 inset-y-0 flex items-center  pl-1.5">
-                  <svg class="text-red-400 w-5 h-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                  <svg class="text-gray-400 w-5 h-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
                     <path fill="currentColor" d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 14H4V8l8 5l8-5v10zm-8-7L4 6h16l-8 5z"/>
                   </svg>
                 </div>
-                <input type="email" id="email" name="email" class="border-gray-300 px-7 rounded-md focus:border-red-500 focus:ring-red-500 text-sm text-red-700 placeholder-red-300 w-full" placeholder="JohnDoe@gmail.com">
-                <div class="absolute right-0 inset-y-0 flex items-center  pr-1.5">
-                  <svg class="text-red-500 w-5 h-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-                    <path fill="currentColor" d="M12 16a1 1 0 1 0 1 1a1 1 0 0 0-1-1Zm10.67 1.47l-8.05-14a3 3 0 0 0-5.24 0l-8 14A3 3 0 0 0 3.94 22h16.12a3 3 0 0 0 2.61-4.53Zm-1.73 2a1 1 0 0 1-.88.51H3.94a1 1 0 0 1-.88-.51a1 1 0 0 1 0-1l8-14a1 1 0 0 1 1.78 0l8.05 14a1 1 0 0 1 .05 1.02ZM12 8a1 1 0 0 0-1 1v4a1 1 0 0 0 2 0V9a1 1 0 0 0-1-1Z"/>
-                  </svg>
-                </div>
+                <input type="email" id="email" name="email" class="border-gray-300 px-7 rounded-md focus:border-gray-500 focus:ring-gray-500 text-sm text-gray-700 placeholder-gray-500 w-full" placeholder="JohnDoe@gmail.com">
               </div>
-              <p class="text-red-700 mt-1 pl-1">email is not valid!</p>
             </div>
 
             <!--            input Password-->
@@ -90,22 +69,22 @@
             </div>
 
             <div class="pt-5">
-              <a href="#" class="flex justify-center items-center rounded-md bg-green-600 py-2 px-4 text-white hover:bg-green-700 font-semibold
+              <nuxt-link to="/verify-email" class="flex justify-center items-center rounded-md bg-green-600 py-2 px-4 text-white hover:bg-green-700 font-semibold
           shadow-lg hover:shadow-xl focus:shadow-xl focus:outline-none focus:ring-2 focus:ring-green-500
           focus:ring-offset-2 transition duration-200 ease-in-out "
               >
                 Sign up
-              </a>
+              </nuxt-link>
             </div>
 
           </form>
 
           <div class="flex justify-center items-center mt-5">
-            <a href="#" class="font-medium text-sm text-green-600 hover:text-green-700">Already have an account?</a>
+            <nuxt-link to="login" class="font-medium text-sm text-green-600 hover:text-green-700">Already have an account?</nuxt-link>
           </div>
 
         </div>
-      </div>
+      </main>
   </div>
 </template>
 
@@ -113,6 +92,11 @@
 
 export default {
   name: "index",
+  data () {
+    return {
+      signIn: true
+    }
+  }
 }
 </script>
 
