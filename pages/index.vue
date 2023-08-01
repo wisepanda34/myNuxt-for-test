@@ -27,7 +27,6 @@
             </div>
 
             <!--            input Email-->
-
             <div>
               <label class="block text-sm font-medium text-gray-700 pl-1" for="email">Email</label>
               <div class="relative rounded-md shadow-md mt-2">
@@ -41,7 +40,6 @@
             </div>
 
             <!--            input Password-->
-
             <div>
               <label class="block text-sm font-medium text-gray-700 pl-1" for="password">Password</label>
               <div class="relative rounded-md shadow-md mt-2">
@@ -55,7 +53,6 @@
             </div>
 
             <!--            input password_confirm-->
-
             <div>
               <label class="block text-sm font-medium text-gray-700 pl-1" for="password_confirmation">Confirm password</label>
               <div class="relative rounded-md shadow-md mt-2">

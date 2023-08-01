@@ -26,7 +26,6 @@
           </div>
 
           <!--            input Email-->
-
           <div>
             <label class="block text-sm font-medium text-gray-400 pl-1" for="email">Email</label>
             <div class="relative rounded-md shadow-md mt-2">
@@ -49,8 +48,6 @@
           </div>
 
         </form>
-
-
 
       </div>
     </main>

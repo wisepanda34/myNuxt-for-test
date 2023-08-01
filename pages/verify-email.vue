@@ -2,7 +2,6 @@
   <div>
     <Header :signOut="signOut" />
 
-
     <main class="flex flex-col justify-center pb-20">
       <div class="mx-auto max-w-lg">
         <svg class="text-green-600 mx-auto w-14 h-14" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
