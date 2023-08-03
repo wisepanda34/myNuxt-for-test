@@ -53,7 +53,18 @@
                   placeholder="JohnDoe@gmail.com"
                   @change="v$.email.$touch"
               />
+              <Icon
+                  v-if="!v$.email.$invalid || v$.email.$error"
+                  class="absolute right-2 h-full text-xl text-green-500"
+                  :class="{ 'text-green-500': !v$.email.$invalid, 'text-yellow-500': v$.email.$error }"
+                  :name="`heroicons-solid:${!v$.email.$error ? 'check-circle' : 'exclamation'}`"
+              />
+              <div
+                  v-if="v$?.email?.$dirty && v$?.email?.$error"
+                  class="text-red-500 text-sm mt-3"
+              >{{ v$?.email?.$message }}</div>
             </div>
+
           </div>
 
           <!--            input Password-->
@@ -78,6 +89,16 @@
                   placeholder="min 4 characters"
                   @change="v$.password.$touch"
               >
+              <Icon
+                  v-if="!v$.password.$invalid || v$.password.$error"
+                  class="absolute right-2 h-full text-xl text-green-500"
+                  :class="{ 'text-green-500': !v$.password.$invalid, 'text-yellow-500': v$.password.$error }"
+                  :name="`heroicons-solid:${!v$.password.$error ? 'check-circle' : 'exclamation'}`"
+              />
+              <p
+                  v-if="v$?.password?.$dirty && v$?.password?.$error"
+                  class="text-red-500 text-sm mt-1"
+              >{{ v$?.password?.$message }}</p>
             </div>
 
           </div>
@@ -146,12 +167,12 @@ const signUp = true
 const rules = computed(() => {
   return {
     email: {
-      required: helpers.withMessage('The email field is required}}}}', required),
-      email: helpers.withMessage('Invalid email format/////', email),
+      required: helpers.withMessage('The email field is required', required),
+      email: helpers.withMessage('Invalid email format', email),
     },
     password: {
-      required: helpers.withMessage('The password field is required!!!!!', required),
-      minLength: minLength(6),
+      required: helpers.withMessage('The password field is required', required),
+      minLength: minLength(4),
     }
     // confirmPassword: {
     //   required: helpers.withMessage('The password confirmation field is required', required),
