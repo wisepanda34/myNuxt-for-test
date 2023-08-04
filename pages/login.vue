@@ -44,7 +44,7 @@
                   v-model="formData.email"
                   class="border-gray-300 pl-7 rounded-md focus:border-green-500 focus:ring-green-500 text-sm w-full"
                   :class="{
-                    'border-red-500 focus:border-red-500': v$.email.$error && !formData.submitted,
+                    'border-red-500 focus:border-red-500': v$.email.$error && !submitted,
                     'border-[#42d392] ': !v$.email.$invalid
                   }"
                   type="email"
@@ -54,7 +54,7 @@
                   @change="v$.email.$touch"
               />
               <Icon
-                  v-if="v$?.email?.$dirty && v$.email.$error && !formData.submitted"
+                  v-if="v$?.email?.$dirty && v$.email.$error && !submitted"
                   class="absolute right-2 h-full text-xl text-green-500"
                   :class="{ 'text-green-500': !v$.email.$invalid, 'text-yellow-500': v$.email.$error }"
                   :name="`heroicons-solid:${!v$.email.$error ? 'check-circle' : 'exclamation'}`"
@@ -90,7 +90,7 @@
                   @change="v$.password.$touch"
               >
               <Icon
-                  v-if="(v$?.password?.$dirty || formData.submitted) && v$.password.$error"
+                  v-if="(v$?.password?.$dirty || submitted) && v$.password.$error"
                   class="absolute right-2 h-full text-xl text-green-500"
                   :class="{ 'text-green-500': !v$.password.$invalid, 'text-yellow-500': v$.password.$error }"
                   :name="`heroicons-solid:${!v$.password.$error ? 'check-circle' : 'exclamation'}`"
@@ -118,14 +118,14 @@
             <nuxt-link to="/forgot-password" class="font-medium text-sm text-green-600 hover:text-green-700">Forgot your password?</nuxt-link>
           </div>
 
-<!--          <div class="pt-5">-->
+          <div class="pt-5">
 <!--            <nuxt-link to="/forgot-password" class="flex justify-center items-center rounded-md bg-green-600 py-2 px-4 text-white hover:bg-green-700 font-semibold-->
 <!--          shadow-lg hover:shadow-xl focus:shadow-xl focus:outline-none focus:ring-2 focus:ring-green-500-->
 <!--          focus:ring-offset-2 transition duration-200 ease-in-out "-->
 <!--            >-->
 <!--              Sign in-->
 <!--            </nuxt-link>-->
-<!--          </div>-->
+          </div>
           <button
               type="submit"
               class="flex justify-center items-center mx-auto rounded-md bg-green-600 py-2 px-4 text-white hover:bg-green-700 font-semibold
@@ -149,21 +149,12 @@ import { required, email, sameAs, minLength, helpers } from '@vuelidate/validato
 import { useVuelidate } from '@vuelidate/core'
 
 
-
+let submitted = false
 const formData = reactive({
   email: '',
-  password: '',
-  submitted: false
+  password: ''
 })
 const signUp = true
-
-// const rules = computed(() => {
-//   return {
-//     email: { required, email },
-//     password: { required, minLength: minLength(6) }
-//     // confirmPassword: { required, sameAs: sameAs(formData.password) }
-//   }
-// })
 
 const rules = computed(() => {
   return {
@@ -185,9 +176,7 @@ const v$ = useVuelidate(rules, formData)
 
 const submitLogin = () => {
   if (v$.value.$invalid) return
-  console.log('data was sended')
-  // v$.value.$dirty = false
-  formData.submitted = true
+  submitted = true
   formData.email = ''
   formData.password = ''
 }
