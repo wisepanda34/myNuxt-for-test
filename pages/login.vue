@@ -44,8 +44,8 @@
                   v-model="formData.email"
                   class="border-gray-300 pl-7 rounded-md focus:border-green-500 focus:ring-green-500 text-sm w-full"
                   :class="{
-                    'border-red-500 focus:border-red-500': v$.email.$error,
-                    'border-[#42d392] ': !v$.email.$invalid,
+                    'border-red-500 focus:border-red-500': v$.email.$error && !formData.submitted,
+                    'border-[#42d392] ': !v$.email.$invalid
                   }"
                   type="email"
                   id="email"
@@ -54,7 +54,7 @@
                   @change="v$.email.$touch"
               />
               <Icon
-                  v-if="!v$.email.$invalid || v$.email.$error"
+                  v-if="v$?.email?.$dirty && v$.email.$error && !formData.submitted"
                   class="absolute right-2 h-full text-xl text-green-500"
                   :class="{ 'text-green-500': !v$.email.$invalid, 'text-yellow-500': v$.email.$error }"
                   :name="`heroicons-solid:${!v$.email.$error ? 'check-circle' : 'exclamation'}`"
@@ -90,7 +90,7 @@
                   @change="v$.password.$touch"
               >
               <Icon
-                  v-if="!v$.password.$invalid || v$.password.$error"
+                  v-if="(v$?.password?.$dirty || formData.submitted) && v$.password.$error"
                   class="absolute right-2 h-full text-xl text-green-500"
                   :class="{ 'text-green-500': !v$.password.$invalid, 'text-yellow-500': v$.password.$error }"
                   :name="`heroicons-solid:${!v$.password.$error ? 'check-circle' : 'exclamation'}`"
@@ -152,7 +152,8 @@ import { useVuelidate } from '@vuelidate/core'
 
 const formData = reactive({
   email: '',
-  password: ''
+  password: '',
+  submitted: false
 })
 const signUp = true
 
@@ -186,6 +187,7 @@ const submitLogin = () => {
   if (v$.value.$invalid) return
   console.log('data was sended')
   // v$.value.$dirty = false
+  formData.submitted = true
   formData.email = ''
   formData.password = ''
 }
