@@ -11,59 +11,49 @@
           0-2.049c-.294-.585-.882-.585-.147-1.317l.882-.878c.705.585 2.155.732 2.792.732Z"/>
           <path d="M17.885 8.294a2.2 2.2 0 0 1-2.204 2.195a2.2 2.2 0 0 1-2.204-2.195a2.2 2.2 0 0 1 2.204-2.196a2.2 2.2 0 0 1 2.204 2.196Z"/></g>
         </svg>
-        <h2 class="text-2xl sm:text-3xl font-bold text-gray-800">Forgot your password?</h2>
+        <h2 class="text-2xl sm:text-3xl font-bold text-gray-800">set a new password</h2>
       </div>
 
       <div class="bg-white/50 backdrop-blur-xl mt-10 mx-auto rounded-xl shadow-xl p-5 sm:p-10 w-150">
-        <form action="#" autocomplete="off" class="space-y-6">
-
-          <!--            input Email-->
-          <div>
-            <label class="block text-sm font-medium text-gray-700 pl-1" for="email">Email</label>
-            <div class="relative rounded-md shadow-md mt-2">
-              <div class="absolute left-0 inset-y-0 flex items-center  pl-1.5">
-                <svg class="text-gray-400 w-5 h-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-                  <path fill="currentColor" d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 14H4V8l8 5l8-5v10zm-8-7L4 6h16l-8 5z"/>
-                </svg>
-              </div>
-              <input type="email" id="email" name="email" class="border-gray-300 pl-7 rounded-md focus:border-green-500 focus:ring-green-500 text-sm w-full" placeholder="JohnDoe@gmail.com">
-            </div>
-          </div>
-
-          <!--            input Password-->
-          <div>
-            <label class="block text-sm font-medium text-gray-700 pl-1" for="password">Password</label>
+        <h3 class="text-center text-gray-700 mb-5">your email</h3>
+        <form
+            action="#"
+            autocomplete="off"
+            class="space-y-6"
+            novalidate
+        >
+          <div v-for="(field, i) in Object.values(resetData)" :key="i">
+            <label class="block text-sm font-medium text-gray-700 pl-1" :for="field.name">{{ field.name }}</label>
             <div class="relative rounded-md shadow-md mt-2">
               <div class="absolute left-0 inset-y-0 flex items-center  pl-1.5">
                 <svg class="text-gray-400 w-5 h-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
                   <path fill="currentColor" d="M6 22q-.825 0-1.413-.588T4 20V10q0-.825.588-1.413T6 8h1V6q0-2.075 1.463-3.538T12 1q2.075 0 3.538 1.463T17 6v2h1q.825 0 1.413.588T20 10v10q0 .825-.588 1.413T18 22H6Zm0-2h12V10H6v10Zm6-3q.825 0 1.413-.588T14 15q0-.825-.588-1.413T12 13q-.825 0-1.413.588T10 15q0 .825.588 1.413T12 17ZM9 8h6V6q0-1.25-.875-2.125T12 3q-1.25 0-2.125.875T9 6v2ZM6 20V10v10Z"/>
                 </svg>
               </div>
-              <input type="password" id="password" name="password" minLength="8" class="border-gray-300 pl-7 rounded-md focus:border-green-500 focus:ring-green-500 text-sm w-full" placeholder="min 4 characters">
+              <input
+                  v-model="field.value"
+                  :type="field.type"
+                  :id="field.name"
+                  :name="field.name"
+                  class="border-gray-300 pl-7 rounded-md focus:border-green-500 focus:ring-green-500 text-sm w-full"
+                  :class="{
+                    'border-red-500 focus:border-red-500': v$.resetData[Object.keys(resetData)[i]]?.value?.$error,
+                    'border-[#42d392] ': !v$.resetData[Object.keys(resetData)[i]]?.value?.$invalid,
+                  }"
+                  :placeholder="field.placeholder"
+                  @change="v$.resetData[Object.keys(resetData)[i]]?.value?.$touch"
+              >
             </div>
           </div>
 
-          <!--            input password_confirm-->
-          <div>
-            <label class="block text-sm font-medium text-gray-700 pl-1" for="password_confirmation">Confirm password</label>
-            <div class="relative rounded-md shadow-md mt-2">
-              <div class="absolute left-0 inset-y-0 flex items-center  pl-1.5">
-                <svg class="text-gray-400 w-5 h-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-                  <path fill="currentColor" d="M6 22q-.825 0-1.413-.588T4 20V10q0-.825.588-1.413T6 8h1V6q0-2.075 1.463-3.538T12 1q2.075 0 3.538 1.463T17 6v2h1q.825 0 1.413.588T20 10v10q0 .825-.588 1.413T18 22H6Zm0-2h12V10H6v10Zm6-3q.825 0 1.413-.588T14 15q0-.825-.588-1.413T12 13q-.825 0-1.413.588T10 15q0 .825.588 1.413T12 17ZM9 8h6V6q0-1.25-.875-2.125T12 3q-1.25 0-2.125.875T9 6v2ZM6 20V10v10Z"/>
-                </svg>
-              </div>
-              <input type="password" id="password_confirmation" name="password_confirmation" minLength="8" class="border-gray-300 pl-7 rounded-md focus:border-green-500 focus:ring-green-500 text-sm w-full" placeholder="confirm password">
-            </div>
-          </div>
-
-          <div class="pt-5">
-            <nuxt-link to="/login" class="flex justify-center items-center rounded-md bg-green-600 py-2 px-4 text-white hover:bg-green-700 font-semibold
+          <button
+              type="submit"
+              class="flex justify-center items-center  mx-auto rounded-md bg-green-600 py-2 px-4 text-white hover:bg-green-700 font-semibold
           shadow-lg hover:shadow-xl focus:shadow-xl focus:outline-none focus:ring-2 focus:ring-green-500
-          focus:ring-offset-2 transition duration-200 ease-in-out "
-            >
-              Reset password
-            </nuxt-link>
-          </div>
+          focus:ring-offset-2 w-full transition duration-200 ease-in-out "
+          >
+            Set password
+          </button>
 
         </form>
       </div>
@@ -73,13 +63,45 @@
 
 
 <script>
+import {required, sameAs, minLength} from '@vuelidate/validators'
+import { useVuelidate } from '@vuelidate/core'
 export default {
+  setup () { return { v$: useVuelidate() } },
   data () {
     return {
       signIn: true,
       signUp: true,
+      resetData: {
+        password: {
+          name: 'Password',
+          type: 'password',
+          placeholder: 'min 4 characters',
+          value: ''
+        },
+        confirmPassword: {
+          name: 'Confirm password',
+          type: 'password',
+          placeholder: 'repeat password',
+          value: ''
+        }
+      }
     }
-  }
+  },
+  validations () {
+    return {
+      resetData: {
+        password: {
+          required,
+          minlength: minLength(4)
+        },
+        confirmPassword: {
+          required,
+          sameAsPassword: sameAs(this.resetData.password)
+        }
+      }
+    }
+  },
+
 }
 </script>
 

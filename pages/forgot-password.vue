@@ -15,10 +15,17 @@
       </div>
       <div class="bg-white/50 backdrop-blur-xl mt-10 mx-auto rounded-xl shadow-xl p-5 sm:p-10 w-150">
 
-        <form action="#" autocomplete="off" class="space-y-2">
+
+        <form
+            action="#"
+            autocomplete="off"
+            class="space-y-5"
+            novalidate
+            @submit.prevent="submitEmailedLink"
+        >
 
           <!--          warning-->
-          <div class="flex gap-4 items-center justify-between border border-green-300 rounded p-3 bg-green-50">
+          <div v-show="isEmailedLink" class="flex gap-4 items-center justify-between border border-green-300 rounded p-3 bg-green-50">
             <svg class="text-green-500 mx-auto w-6 h-6" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
               <path fill="currentColor" d="m10 17l-4-4l1.41-1.41L10 14.17l6.59-6.59L18 9m-6-8L3 5v6c0 5.55 3.84 10.74 9 12c5.16-1.26 9-6.45 9-12V5l-9-4Z"/>
             </svg>
@@ -34,18 +41,32 @@
                   <path fill="currentColor" d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 14H4V8l8 5l8-5v10zm-8-7L4 6h16l-8 5z"/>
                 </svg>
               </div>
-              <input type="email" id="email" name="email" class="border-gray-300 pl-7 rounded-md focus:border-green-500 focus:ring-green-500 text-sm w-full" placeholder="JohnDoe@gmail.com">
+
+              <input
+                  v-model="emailedLink"
+                  type="email"
+                  id="email"
+                  name="email"
+                  class="border-gray-300 pl-7 rounded-md focus:border-green-500 focus:ring-green-500 text-sm w-full"
+                  :class="{
+                    'border-red-500 focus:border-red-500': v$?.emailedLink?.$error,
+                    'border-[#42d392] ': !v$?.emailedLink?.$invalid
+                  }"
+                  placeholder="JohnDoe@gmail.com"
+                  @change="v$?.emailedLink?.$touch"
+
+              >
             </div>
           </div>
 
-          <div class="pt-5">
-            <nuxt-link to="/reset-password" class="flex justify-center items-center rounded-md bg-green-600 py-2 px-4 text-white hover:bg-green-700 font-semibold
-          shadow-lg hover:shadow-xl focus:shadow-xl focus:outline-none focus:ring-2 focus:ring-green-500
-          focus:ring-offset-2 transition duration-200 ease-in-out "
-            >
-              Send reset link
-            </nuxt-link>
-          </div>
+          <button
+              type="submit"
+              class="flex justify-center items-center mx-auto mt-30 rounded-md bg-green-600 py-2 px-4 text-white hover:bg-green-700 font-semibold
+              shadow-lg hover:shadow-xl focus:shadow-xl focus:outline-none focus:ring-2 focus:ring-green-500
+              focus:ring-offset-2 w-full transition duration-200 ease-in-out"
+          >
+            Send reset link
+          </button>
 
         </form>
 
@@ -56,11 +77,33 @@
 
 
 <script>
+import { required, email } from '@vuelidate/validators'
+import { useVuelidate } from '@vuelidate/core'
 export default {
+  setup () { return { v$: useVuelidate()} },
   data () {
     return {
       signIn: true,
       signUp: true,
+      emailedLink: '',
+      isEmailedLink: false
+    }
+  },
+  validations () {
+    return {
+      emailedLink: {
+        required,
+        email
+      }
+    }
+  },
+  methods: {
+    submitEmailedLink () {
+      if (!this.v$.$invalid) {
+        this.isEmailedLink = true
+      } else {
+        alert('email is not valid')
+      }
     }
   }
 }
