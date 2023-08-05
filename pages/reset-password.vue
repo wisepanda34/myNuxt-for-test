@@ -1,6 +1,6 @@
 <template>
   <div>
-    <Header :signIn="signIn" :signUp="signUp"/>
+    <Header :signUp="signUp"/>
 
     <main class="flex flex-col justify-center pb-20">
       <div class="mx-auto max-w-lg">
@@ -21,6 +21,7 @@
             autocomplete="off"
             class="space-y-6"
             novalidate
+            @submit.prevent="submitReset"
         >
           <div v-for="(field, i) in Object.values(resetData)" :key="i">
             <label class="block text-sm font-medium text-gray-700 pl-1" :for="field.name">{{ field.name }}</label>
@@ -41,7 +42,7 @@
                     'border-[#42d392] ': !v$.resetData[Object.keys(resetData)[i]]?.value?.$invalid,
                   }"
                   :placeholder="field.placeholder"
-                  @change="v$.resetData[Object.keys(resetData)[i]]?.value?.$touch"
+                  @blur="v$.resetData[Object.keys(resetData)[i]]?.value?.$touch"
               >
             </div>
           </div>
@@ -63,8 +64,9 @@
 
 
 <script>
-import {required, sameAs, minLength} from '@vuelidate/validators'
+import { required, sameAs, minLength } from '@vuelidate/validators'
 import { useVuelidate } from '@vuelidate/core'
+import {useRouter} from "#app";
 export default {
   setup () { return { v$: useVuelidate() } },
   data () {
@@ -89,19 +91,29 @@ export default {
   },
   validations () {
     return {
-      resetData: {
+      resetData :{
         password: {
-          required,
-          minlength: minLength(4)
+          value: {
+            required, minLength: minLength(4)
+          }
         },
         confirmPassword: {
-          required,
-          sameAsPassword: sameAs(this.resetData.password)
+          value: {
+            required,
+            sameAsPassword: sameAs(this.resetData.password.value)
+          }
         }
       }
     }
   },
-
+  methods: {
+    submitReset () {
+      if (!this.v$.$invalid) {
+        const router = useRouter()
+        router.push('/login')
+      }
+    }
+  }
 }
 </script>
 

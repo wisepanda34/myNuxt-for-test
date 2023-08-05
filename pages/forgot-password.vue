@@ -60,6 +60,7 @@
           </div>
 
           <button
+              v-show="!isEmailedLink"
               type="submit"
               class="flex justify-center items-center mx-auto mt-30 rounded-md bg-green-600 py-2 px-4 text-white hover:bg-green-700 font-semibold
               shadow-lg hover:shadow-xl focus:shadow-xl focus:outline-none focus:ring-2 focus:ring-green-500
@@ -69,6 +70,17 @@
           </button>
 
         </form>
+
+        <nuxt-link
+            to="/your-mail"
+            v-show="isEmailedLink"
+            type="submit"
+            class="flex justify-center items-center mx-auto mt-30 rounded-md bg-green-600 py-2 px-4 mt-8 text-white hover:bg-green-700 font-semibold
+              shadow-lg hover:shadow-xl focus:shadow-xl focus:outline-none focus:ring-2 focus:ring-green-500
+              focus:ring-offset-2 w-full transition duration-200 ease-in-out"
+        >
+          Go to your Mail
+        </nuxt-link>
 
       </div>
     </main>
