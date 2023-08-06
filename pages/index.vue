@@ -1,6 +1,6 @@
 <template>
   <div>
-    <Header :signIn="signIn"/>
+    <Header :signIn="signIn" :signUp="signUp"/>
     <h1 class="text-center text-4xl">This is main page</h1>
   </div>
 </template>
@@ -10,7 +10,8 @@
 export default {
   data () {
     return {
-      signIn: true
+      signIn: true,
+      signUp: true
     }
   }
 }

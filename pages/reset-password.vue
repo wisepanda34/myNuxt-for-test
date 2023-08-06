@@ -14,7 +14,7 @@
         <h2 class="text-2xl sm:text-3xl font-bold text-gray-800">set a new password</h2>
       </div>
 
-      <div class="bg-white/50 backdrop-blur-xl mt-10 mx-auto rounded-xl shadow-xl p-5 sm:p-10 w-150">
+      <div class="bg-white/50 backdrop-blur-xl mt-10 mx-auto rounded-xl shadow-xl p-5 sm:p-10 sm:w-96 w-50">
         <h3 class="text-center text-gray-700 mb-5">your email</h3>
         <form
             action="#"
@@ -45,6 +45,12 @@
                   @blur="v$.resetData[Object.keys(resetData)[i]]?.value?.$touch"
               >
             </div>
+            <p v-for="error of v$.resetData[Object.keys(resetData)[i]]?.$errors"
+               :key="error.$uid"
+               class="block text-red-500 text-sm mt-2  h-5"
+            >
+              {{ error.$message }}
+            </p>
           </div>
 
           <button

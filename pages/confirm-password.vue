@@ -14,7 +14,7 @@
         <h2 class="text-2xl sm:text-3xl font-bold text-gray-800"> Confirm password</h2>
       </div>
 
-      <div class="bg-white/50 backdrop-blur-xl mt-10 mx-auto rounded-xl shadow-xl p-5 sm:p-10 w-150">
+      <div class="bg-white/50 backdrop-blur-xl mt-10 mx-auto rounded-xl shadow-xl p-5 sm:p-10 sm:w-96 w-50">
         <form action="#" autocomplete="off" class="space-y-2">
 
           <!--            input Password-->

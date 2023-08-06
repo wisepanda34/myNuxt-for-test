@@ -13,7 +13,7 @@
         </svg>
         <h2 class="text-2xl sm:text-3xl font-bold text-gray-800">Forgot your password?</h2>
       </div>
-      <div class="bg-white/50 backdrop-blur-xl mt-10 mx-auto rounded-xl shadow-xl p-5 sm:p-10 w-150">
+      <div class="bg-white/50 backdrop-blur-xl mt-10 mx-auto rounded-xl shadow-xl p-5 sm:p-10 sm:w-96 w-50">
 
 
         <form
@@ -33,9 +33,9 @@
           </div>
 
           <!--            input Email-->
-          <div>
+          <div v-if="!isEmailedLink">
             <label class="block text-sm font-medium text-gray-400 pl-1" for="email">Email</label>
-            <div class="relative rounded-md shadow-md mt-2">
+            <div   class="relative rounded-md shadow-md mt-2">
               <div class="absolute left-0 inset-y-0 flex items-center  pl-1.5">
                 <svg class="text-gray-400 w-5 h-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
                   <path fill="currentColor" d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 14H4V8l8 5l8-5v10zm-8-7L4 6h16l-8 5z"/>
@@ -43,6 +43,7 @@
               </div>
 
               <input
+
                   v-model="emailedLink"
                   type="email"
                   id="email"
@@ -57,6 +58,12 @@
 
               >
             </div>
+            <p v-for="error of v$?.emailedLink?.$errors"
+               :key="error.$uid"
+               class="block text-red-500 text-sm mt-2  h-5"
+            >
+              {{ error.$message }}
+            </p>
           </div>
 
           <button

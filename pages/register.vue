@@ -9,7 +9,7 @@
         </svg>
         <h2 class="text-2xl sm:text-3xl font-bold text-gray-800">Create your profile</h2>
       </div>
-      <div class="bg-white/50 backdrop-blur-xl mt-10 mx-auto rounded-xl shadow-xl p-5 sm:p-10 w-150">
+      <div class="bg-white/50 backdrop-blur-xl mt-10 mx-auto rounded-xl shadow-xl p-5 sm:p-10 sm:w-96 w-50">
 
         <form action="#"
               autocomplete="off"
@@ -39,6 +39,12 @@
                   @change="v$.formData[Object.keys(formData)[i]]?.value?.$touch"
               >
             </div>
+            <p v-for="error of v$.formData[Object.keys(formData)[i]].$errors"
+               :key="error.$uid"
+               class="block text-red-500 text-sm mt-2  h-5"
+            >
+              {{ error.$message }}
+            </p>
           </div>
           <button
               type="submit"

@@ -12,7 +12,7 @@
         </svg>
         <h2 class="text-2xl sm:text-3xl font-bold text-gray-800">Wellcome back!</h2>
       </div>
-      <div class="bg-white/50 backdrop-blur-xl mt-10 mx-auto rounded-xl shadow-xl p-5 sm:p-10 w-150">
+      <div class="bg-white/50 backdrop-blur-xl mt-10 mx-auto rounded-xl shadow-xl p-5 sm:p-10 sm:w-96 w-50">
 
         <form
             action="#"
@@ -34,38 +34,47 @@
           <!--            inputs-->
           <div v-for="(field, i) in Object.values(loginData)" :key="i">
             <label class="block text-sm font-medium text-gray-700 pl-1" :for="field.name">{{ field.name }}</label>
-            <div class="relative rounded-md shadow-md mt-2">
-              <div class="absolute left-0 inset-y-0 flex items-center  pl-1.5">
-                <svg class="text-gray-400 w-5 h-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-                  <path fill="currentColor" d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 14H4V8l8 5l8-5v10zm-8-7L4 6h16l-8 5z"/>
-                </svg>
-              </div>
-              <input
-                  v-model="field.value"
-                  class="border-gray-300 pl-7 rounded-md focus:border-green-500 focus:ring-green-500 text-sm w-full"
-                  :class="{
+            <div class="">
+              <div class="relative rounded-md shadow-md mt-2">
+                <div class="absolute left-0 inset-y-0 flex items-center  pl-1.5">
+                  <svg v-show="field === loginData.email" class="text-gray-400 w-5 h-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                    <path fill="currentColor" d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 14H4V8l8 5l8-5v10zm-8-7L4 6h16l-8 5z"/>
+                  </svg>
+                  <svg v-show="field === loginData.password" class="text-gray-400 w-5 h-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                    <path fill="currentColor" d="M6 22q-.825 0-1.413-.588T4 20V10q0-.825.588-1.413T6 8h1V6q0-2.075 1.463-3.538T12 1q2.075 0 3.538 1.463T17 6v2h1q.825 0 1.413.588T20 10v10q0 .825-.588 1.413T18 22H6Zm0-2h12V10H6v10Zm6-3q.825 0 1.413-.588T14 15q0-.825-.588-1.413T12 13q-.825 0-1.413.588T10 15q0 .825.588 1.413T12 17ZM9 8h6V6q0-1.25-.875-2.125T12 3q-1.25 0-2.125.875T9 6v2ZM6 20V10v10Z"/>
+                  </svg>
+                </div>
+                <input
+                    v-model="field.value"
+                    class="block border-gray-300 pl-7 rounded-md focus:border-green-500 focus:ring-green-500 text-sm w-full"
+                    :class="{
                     'border-red-500 focus:border-red-500': v$?.loginData[Object.keys(loginData)[i]].value?.$error,
                     'border-[#42d392] ': !v$?.loginData[Object.keys(loginData)[i]].value?.$invalid
                   }"
-                  :type="field.type"
-                  :id="field.name"
-                  :name="field.name"
-                  :placeholder="field.placeholder"
-                  @change="v$?.loginData[Object.keys(loginData)[i]].value?.$touch"
-              />
+                    :type="field.type"
+                    :id="field.name"
+                    :name="field.name"
+                    :placeholder="field.placeholder"
+                    @change="v$?.loginData[Object.keys(loginData)[i]].value?.$touch"
+                />
+              </div>
+
 <!--             Helper Messages-->
-              <div
-                  v-if="v$?.loginData[Object.keys(loginData)[i]].value?.$dirty && v$?.loginData[Object.keys(loginData)[i]].value?.$error"
-                  class="text-red-500 text-sm mt-1"
-              >{{ v$?.loginData[Object.keys(loginData)[i]].value?.$message }}</div>
+              <p v-for="error of v$.loginData[Object.keys(loginData)[i]].$errors"
+                 :key="error.$uid"
+                 class="block text-red-500 text-sm mt-2  h-5"
+              >
+                {{ error.$message }}
+              </p>
+
               <div>
-                <!--              <Icon-->
-                <!--                  v-if="v$.loginData[Object.keys(loginData)[i]].value?.$dirty && v$.loginData[Object.keys(loginData)[i]].value?.$error"-->
-                <!--                  class="absolute right-2 h-full text-xl text-green-500"-->
-                <!--                  :class="{ 'text-green-500': !v$.loginData[Object.keys(loginData)[i]].value?.$invalid,-->
-                <!--                  'text-yellow-500': v$.loginData[Object.keys(loginData)[i]].value?.$error }"-->
-                <!--                  :name="{'heroicons-solid' : !v$.loginData[Object.keys(loginData)[i]].value?.$error ? 'check-circle': v$.loginData[Object.keys(loginData)[i]].value?.$error }"-->
-                <!--              />-->
+<!--                              <Icon-->
+<!--                                  v-if="v$.loginData[Object.keys(loginData)[i]].value?.$dirty && v$.loginData[Object.keys(loginData)[i]].value?.$error"-->
+<!--                                  class="absolute right-2 h-full text-xl text-green-500"-->
+<!--                                  :class="{ 'text-green-500': !v$.loginData[Object.keys(loginData)[i]].value?.$invalid,-->
+<!--                                  'text-yellow-500': v$.loginData[Object.keys(loginData)[i]].value?.$error }"-->
+<!--                                  :name="{'heroicons-solid' : !v$.loginData[Object.keys(loginData)[i]].value?.$error ? 'check-circle': v$.loginData[Object.keys(loginData)[i]].value?.$error }"-->
+<!--                              />-->
               </div>
 
             </div>
@@ -89,7 +98,7 @@
 
           <button
               type="submit"
-              class="flex justify-center items-center mx-auto rounded-md bg-green-600 py-2 px-4 text-white hover:bg-green-700 font-semibold
+              class="flex justify-center items-center mx-auto rounded-md bg-green-600 py-2 px-4 text-white w-full hover:bg-green-700 font-semibold
               shadow-lg hover:shadow-xl focus:shadow-xl focus:outline-none focus:ring-2 focus:ring-green-500
               focus:ring-offset-2 transition duration-200 ease-in-out"
           >
@@ -153,7 +162,7 @@
       submitLoginIn() {
         if (!this.v$.$invalid) {
           const router = useRouter()
-          router.push('/')
+          router.push('/cabinet')
         } else {
           this.isLoginInFalse = false
         }

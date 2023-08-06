@@ -17,13 +17,13 @@
       >
         Sign in
       </nuxt-link>
-      <nuxt-link to="/" v-show="signUp"  class="flex  rounded-md bg-green-600 py-2 px-4 text-white hover:bg-green-700 font-semibold
+      <nuxt-link to="/register" v-show="signUp"  class="flex  rounded-md bg-green-600 py-2 px-4 text-white hover:bg-green-700 font-semibold
       shadow-lg hover:shadow-xl focus:shadow-xl focus:outline-none focus:ring-2 focus:ring-green-500
       focus:ring-offset-2 transition duration-200 ease-in-out "
       >
         Sign up
       </nuxt-link>
-      <nuxt-link to="/login" v-show="signOut" class="flex  rounded-md bg-gray-200 py-2 px-4 text-gray-900 hover:bg-gray-300 font-semibold
+      <nuxt-link to="/" v-show="signOut" class="flex  rounded-md bg-gray-200 py-2 px-4 text-gray-900 hover:bg-gray-300 font-semibold
     shadow-lg hover:shadow-xl focus:shadow-xl focus:outline-none focus:ring-2 focus:ring-grey-500
     focus:ring-offset-2 transition duration-200 ease-in-out "
       >
